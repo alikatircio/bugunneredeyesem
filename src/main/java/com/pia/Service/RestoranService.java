@@ -22,6 +22,7 @@ public class RestoranService {
     @Autowired
     private KisiService kisiService;
 
+    public List<RasgeleRestoran>  cikanRestoranlar = new ArrayList<>();
 
     public Collection<Restoran> findAllRestoran(){
 
@@ -72,6 +73,7 @@ public class RestoranService {
             Restoran bulunanRestoran = findOne(restoranIndex);
             rasgeleRestoran.setRestoranId(bulunanRestoran.getId());
             rasgeleRestoran.setRestoranName(bulunanRestoran.getName());
+            rasgeleRestoran.setKisiId(kisis.get(i).getId());
             rasgeleRestoran.setKisiName(kisis.get(i).getName());
             rasgeleRestoranlar.add(rasgeleRestoran);
 
@@ -82,6 +84,7 @@ public class RestoranService {
                 return o1.getRestoranId()-o2.getRestoranId();
             }
         });
-        return rasgeleRestoranlar;
+        cikanRestoranlar = rasgeleRestoranlar;
+        return cikanRestoranlar;
     }
 }

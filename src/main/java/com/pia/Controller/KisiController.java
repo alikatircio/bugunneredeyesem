@@ -54,7 +54,7 @@ public class KisiController {
     public String updateKisi(@ModelAttribute Kisi kisi){
 
         kisiService.updateKisi(kisi);
-        return "redirect:pages/kisiler";
+        return "redirect:kisiler";
     }
 
     @RequestMapping(value = "kisi_sil", method = RequestMethod.GET)

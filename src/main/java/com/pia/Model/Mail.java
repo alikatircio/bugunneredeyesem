@@ -1,23 +1,34 @@
 package com.pia.Model;
 
-/**
- * Created by ali on 26.12.2017.
- */
-public class RasgeleRestoran {
+import org.springframework.ui.Model;
 
+/**
+ * Created by ali on 3.01.2018.
+ */
+public class Mail {
+
+    private int kisiId;
+    private String kisiEmail;
     private int restoranId;
     private String restoranName;
-    private int kisiId;
-    private String kisiName;
+    private Model model;
 
-    public RasgeleRestoran() {
+    public Model getModel() {
+        return model;
     }
 
-    public RasgeleRestoran(int restoranId, String restoranName, int kisiId, String kisiName) {
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public Mail() {
+    }
+
+    public Mail(int kisiId, String kisiName, int restoranId, String restoranName) {
+        this.kisiId = kisiId;
+        this.kisiEmail = kisiName;
         this.restoranId = restoranId;
         this.restoranName = restoranName;
-        this.kisiId = kisiId;
-        this.kisiName = kisiName;
     }
 
     public int getKisiId() {
@@ -26,6 +37,14 @@ public class RasgeleRestoran {
 
     public void setKisiId(int kisiId) {
         this.kisiId = kisiId;
+    }
+
+    public String getKisiEmail() {
+        return kisiEmail;
+    }
+
+    public void setKisiEmail(String kisiName) {
+        this.kisiEmail = kisiName;
     }
 
     public int getRestoranId() {
@@ -42,13 +61,5 @@ public class RasgeleRestoran {
 
     public void setRestoranName(String restoranName) {
         this.restoranName = restoranName;
-    }
-
-    public String getKisiName() {
-        return kisiName;
-    }
-
-    public void setKisiName(String kisiName) {
-        this.kisiName = kisiName;
     }
 }

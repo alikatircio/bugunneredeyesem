@@ -10,25 +10,20 @@
 
 <div class="container">
     <h2>Rasgele Restoran</h2>
-    <table class="table table-striped" th:object="${restoran}">
+
+    <table class="table table-striped" th:object="${mail}">
         <thead>
         <tr>
-            <th>Restoran No</th>
             <th>Restoran Adı</th>
-            <th>Kişi Adı</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:id="${restoran.restoranId}" th:each="restoran : ${restoranlar}">
-            <td><span th:text="${(restoran.restoranId)}"></span></td>
+        <tr th:each="restoran : ${emailicerik}">
             <td><span th:text="${restoran.restoranName}"></span></td>
-            <td><span th:text="${restoran.kisiName}"></span></td>
         </tr>
         </tbody>
     </table>
-    <form  action="#" th:action="@{mail_gonder}" method="GET">
-        <button type="submit" class="btn btn-default">Gönder</button>
-    </form>
+    <p>Bugün burada yemek ister misiniz?</p>
 </div>
 </body>
 <div th:replace="pages/index :: footer">...</div>

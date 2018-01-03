@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <h2>Yeni Restoran Ekle</h2>
+    <form action="#" th:action="@{/kisi_olustur}" method="post" th:object="${kisi}">
+        <div class="form-group">
+            <label for="email">Kişi Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Kişi Email" name="email" > </input>
+            <label for="name">Kişi Adı:</label>
+            <input type="text" class="form-control" id="name" placeholder="Kişi adı" name="name" > </input>
+        </div>
+        <button type="submit" class="btn btn-default">Gönder</button>
+    </form>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

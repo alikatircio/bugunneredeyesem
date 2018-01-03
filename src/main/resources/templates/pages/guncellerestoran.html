@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <h2>Restoran Güncelle</h2>
+    <form  action="#" th:action="@{guncelle}" method="PUT" th:object="${restoran}">
+        <div  class="form-group">
+            <label for="name">Restoran ID:</label>
+            <input type="text" class="form-control" th:value="${restoran.id}" id="id" placeholder="Restoran Numarası" name="id" > </input>
+            <label for="name">Restoran Adı:</label>
+            <input type="text" class="form-control" th:value="${restoran.name}" id="name" placeholder="Restoran Adı" name="name" > </input>
+        </div>
+        <button type="submit" class="btn btn-default">Gönder</button>
+    </form>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

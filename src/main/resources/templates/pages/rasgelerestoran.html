@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <h2>Rasgele Restoran</h2>
+    <table class="table table-striped" th:object="${restoran}">
+        <thead>
+        <tr>
+            <th>Restoran No</th>
+            <th>Restoran Adı</th>
+            <th>Kişi Adı</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:id="${restoran.restoranId}" th:each="restoran : ${restoranlar}">
+            <td><span th:text="${(restoran.restoranId)}"></span></td>
+            <td><span th:text="${restoran.restoranName}"></span></td>
+            <td><span th:text="${restoran.kisiName}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Kişi No</th>
+            <th>Kişi Email</th>
+            <th>Kişi Adı</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kisi, iterStat : ${kisiler}">
+            <td><span th:text="${(kisi.id)}"></span></td>
+            <td><span th:text="${kisi.email}"></span></td>
+            <td><span th:text="${kisi.name}"></span></td>
+            <td><a th:href="@{/kisi_sil(id=${kisi.id})}"><div class="glyphicon glyphicon-trash"></div></a>
+                <a th:href="@{kisi_guncelle(kisi=${kisi.id})}"><div class="glyphicon glyphicon-pencil"></div></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

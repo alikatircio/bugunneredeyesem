@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Restoran No</th>
+            <th>Restoran Adı</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="restoran, iterStat : ${restoranlar}">
+            <td><span th:text="${(restoran.id)}"></span></td>
+            <td><span th:text="${restoran.name}"></span></td>
+            <td><a th:href="@{/sil(id=${restoran.id})}"><div class="glyphicon glyphicon-trash"></div></a>
+                <a th:href="@{updaterestoran(restoran=${restoran.id})}"><div class="glyphicon glyphicon-pencil"></div></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

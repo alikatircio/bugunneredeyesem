@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <h2>Kişi Güncelle</h2>
+    <form  action="#" th:action="@{kisiguncelle}" method="PUT" th:object="${kisi}">
+        <div  class="form-group">
+            <label for="name">Kişi ID:</label>
+            <input type="text" class="form-control" th:value="${kisi.id}" id="id" placeholder="Kişi Numarası" name="id" > </input>
+            <label for="name">Kişi Email:</label>
+            <input type="email" class="form-control" th:value="${kisi.email}" id="email" placeholder="Kişi Email" name="email" > </input>
+            <label for="name">Kişi Adı:</label>
+            <input type="text" class="form-control" th:value="${kisi.name}" id="name" placeholder="Restoran Adı" name="name" > </input>
+        </div>
+        <button type="submit" class="btn btn-default">Gönder</button>
+    </form>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

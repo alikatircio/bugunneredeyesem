@@ -45,7 +45,7 @@ public class MailService {
         messageHelper.setFrom("prm-test@pia-team.com");
         messageHelper.setTo(recipient);
         messageHelper.setSubject("Bugün Nerede Yesem?");
-        String content = mailContentBuilder.build(name, restoran);
+        String content = mailContentBuilder.build(name, recipient, restoran);
         messageHelper.setText(content, true);
         try {
             javaMailSender.send(mimeMessage);

@@ -6,9 +6,10 @@
 <body>
 
 <div class="container">
-    <p>Merhaba <span th:text="${name}"></span></p>
-    <p>Bugün <span th:text="${restoran}"></span>'da yemek yemek ister misin?</p>
-    
+    <p>Merhaba <span th:text="${name}"></span>,</p>
+    <p>Bugün <span th:text="${restoran}"></span>'de yemek yemek ister misin?</p>
+    <a th:href="'http://192.168.1.113:8080/evet?email='+${email}" method="GET">Evet</a>
+    <a th:href="'http://192.168.1.113:8080/hayir?email='+${email}" method="GET">Hayır</a>
 </div>
 </body>
 </html>

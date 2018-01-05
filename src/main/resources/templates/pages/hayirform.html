@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <form action="#" th:action="@{sebep}" method="PUT" th:object="${cevap}">
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+            <label class="form-check-label" for="exampleCheck1">Pahalı</label>
+            <input type="checkbox" class="form-check-input" id="exampleCheck2"/>
+            <label class="form-check-labe2" for="exampleCheck2">Yemekler Yağlı</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </form>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>

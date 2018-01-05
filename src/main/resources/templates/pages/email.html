@@ -2,29 +2,13 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="pages/index :: head">...</div>
 </head>
 <body>
 
-<div th:replace="pages/index :: navbar">...</div>
-
 <div class="container">
-    <h2>Rasgele Restoran</h2>
-
-    <table class="table table-striped" th:object="${mail}">
-        <thead>
-        <tr>
-            <th>Restoran Adı</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="restoran : ${emailicerik}">
-            <td><span th:text="${restoran.restoranName}"></span></td>
-        </tr>
-        </tbody>
-    </table>
-    <p>Bugün burada yemek ister misiniz?</p>
+    <p>Merhaba <span th:text="${name}"></span></p>
+    <p>Bugün <span th:text="${restoran}"></span>'da yemek yemek ister misin?</p>
+    
 </div>
 </body>
-<div th:replace="pages/index :: footer">...</div>
 </html>

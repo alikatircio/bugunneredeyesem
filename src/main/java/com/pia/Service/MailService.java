@@ -35,14 +35,18 @@ public class MailService {
     @Autowired
     private KisiService kisiService;
 
-    public void sendEmail(String recipient, String mesaj) throws MessagingException {
+    @Autowired
+    private MailContentBuilder mailContentBuilder;
+
+    public void sendEmail(String name, String recipient, String restoran) throws MessagingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
         messageHelper.setFrom("prm-test@pia-team.com");
         messageHelper.setTo(recipient);
-        messageHelper.setSubject("Bugün Nerede Yesem");
-        messageHelper.setText(mesaj);
+        messageHelper.setSubject("Bugün Nerede Yesem?");
+        String content = mailContentBuilder.build(name, restoran);
+        messageHelper.setText(content, true);
         try {
             javaMailSender.send(mimeMessage);
         }catch (MailException e){

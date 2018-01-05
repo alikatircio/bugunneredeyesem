@@ -64,8 +64,8 @@ public class KisiService {
         kisiRepository.delete(id);
     }
 
-    public User findByEmail(String email){
+    public Kisi findByEmail(String email){
 
-        return (User) kisiRepository.findByEmail(email);
+        return (Kisi) kisiRepository.findByEmail(email);
     }
 }

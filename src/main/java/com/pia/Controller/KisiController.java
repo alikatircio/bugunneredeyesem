@@ -38,7 +38,7 @@ public class KisiController {
     public String addKisi(@ModelAttribute Kisi kisi){
 
         kisiService.addKisi(kisi);
-        return  "redirect:pages/kisiler";
+        return  "redirect:kisiler";
     }
 
     @RequestMapping(value = "kisi_guncelle", method = RequestMethod.GET)

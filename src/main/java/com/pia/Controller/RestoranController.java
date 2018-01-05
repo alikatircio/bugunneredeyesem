@@ -1,5 +1,6 @@
 package com.pia.Controller;
 
+import com.pia.Model.Kisi;
 import com.pia.Model.Mail;
 import com.pia.Model.Restoran;
 import com.pia.Service.KisiService;
@@ -97,16 +98,12 @@ public class RestoranController {
         for (int i = 0; i<kisiAndRestoranList.size(); i++){
 
             String email = kisiAndRestoranList.get(i).getKisiEmail();
-            String mesaj = kisiAndRestoranList.get(i).getRestoranName();
-            ModelAndView model = new ModelAndView("pages/email");
-            model.addObject("emailicerik",restoranService.cikanRestoranlar);
-            mailService.sendEmail(email, mesaj);
+            Kisi kisi = kisiService.findByEmail(email);
+            String kisiName = kisi.getName();
+            String restoranName = kisiAndRestoranList.get(i).getRestoranName();
+            mailService.sendEmail(kisiName, email, restoranName);
         }
 
         return "redirect:/";
-        /*
-        ModelAndView model = new ModelAndView("pages/email-template");
-        model.addObject("restoranlar1",restoranService.randomRestoran());
-        return model;*/
     }
 }

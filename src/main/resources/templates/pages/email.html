@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
@@ -8,8 +7,8 @@
 <div class="container">
     <p>Merhaba <span th:text="${name}"></span>,</p>
     <p>Bugün <span th:text="${restoran}"></span>'de yemek yemek ister misin?</p>
-    <a th:href="'http://192.168.1.113:8080/evet?email='+${email}" method="GET">Evet</a>
-    <a th:href="'http://192.168.1.113:8080/hayir?email='+${email}" method="GET">Hayır</a>
+    <a th:href="'http://192.168.1.113:8080/evet?email='+${email} +'&amp;restoran='+${restoran}" method="GET">Evet</a>
+    <a th:href="'http://192.168.1.113:8080/hayir?email='+${email}+'&amp;restoran='+${restoran}" method="GET">Hayır</a>
 </div>
 </body>
 </html>

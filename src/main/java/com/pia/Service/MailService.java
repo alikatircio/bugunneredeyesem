@@ -1,9 +1,7 @@
 package com.pia.Service;
 
-import com.pia.Model.Kisi;
-import com.pia.Model.Mail;
-import com.pia.Model.RasgeleRestoran;
-import com.pia.Model.Restoran;
+import com.pia.DAO.CevapRepository;
+import com.pia.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -37,6 +35,9 @@ public class MailService {
 
     @Autowired
     private MailContentBuilder mailContentBuilder;
+
+    @Autowired
+    private CevapRepository cevapRepository;
 
     public void sendEmail(String name, String recipient, String restoran) throws MessagingException {
 
@@ -72,5 +73,10 @@ public class MailService {
             kisiAndRestonList.add(mail);
         }
         return kisiAndRestonList;
+    }
+
+    public void addCevap(Cevap cevap){
+
+        cevapRepository.save(cevap);
     }
 }

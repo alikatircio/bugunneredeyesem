@@ -9,9 +9,11 @@ import com.sun.tracing.dtrace.ModuleAttributes;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,23 +47,29 @@ public class MailController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "evet", method = RequestMethod.GET)
-    public String answerEvet(){
+    @RequestMapping(value = "evet", method = RequestMethod.GET )
+    public String answerEvet(@RequestParam(value = "email") String email, @RequestParam(value = "restoran") String restoran, @ModelAttribute Cevap cevap){
 
-        System.out.println("ali");
-        return "redirect:/";
+        cevap.setKisiEmail(email);
+        cevap.setRestoranName(restoran);
+        cevap.setGidiyor(true);
+        mailService.addCevap(cevap);
+        return "redirect:tesekkurler";
     }
 
     @RequestMapping(value = "hayir", method = RequestMethod.GET)
-    public String answeHayır(){
+    public String answerHayır(){
 
         return "pages/hayirform";
     }
 
     @RequestMapping(value = "sebep", method = RequestMethod.GET)
-    public String hayir(@ModelAttribute Cevap cevap){
+    public String hayir(@RequestParam(value = "email") String email, @RequestParam(value = "restoran") String restoran, @ModelAttribute Cevap cevap){
 
-        System.out.println(cevap.getKisiEmail());
-        return "";
+        cevap.setKisiEmail(email);
+        cevap.setRestoranName(restoran);
+        cevap.setGidiyor(false);
+        mailService.addCevap(cevap);
+        return "redirect:tesekkurler";
     }
 }

@@ -38,7 +38,7 @@ public class RestoranController {
     }
 
     @RequestMapping(value = "yenirestoran/create", method = RequestMethod.POST)
-    public String  addRestoran(@ModelAttribute Restoran restoran, final BindingResult bindingResult){
+    public String  addRestoran(@ModelAttribute Restoran restoran){
 
         restoranService.addRestoran(restoran);
         return  "redirect:/";

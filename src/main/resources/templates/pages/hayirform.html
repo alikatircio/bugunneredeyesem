@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 
 <html lang="tr" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:replace="pages/index :: head">...</div>
-</head>
-<body>
+    <head>
+        <div th:replace="pages/index :: head">...</div>
+    </head>
+    <body>
 
-<div th:replace="pages/index :: navbar">...</div>
+        <div th:replace="pages/index :: navbar">...</div>
 
-<div class="container">
-    <form action="#" th:action="@{sebep}" method="PUT" th:object="${cevap}">
-
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-            <label class="form-check-label" for="exampleCheck1">Pahalı</label>
-            <input type="checkbox" class="form-check-input" id="exampleCheck2"/>
-            <label class="form-check-labe2" for="exampleCheck2">Yemekler Yağlı</label>
+        <div class="container">
+            <div class="row" style="margin-top: 60px">
+                <!-- Columns -->
+                <div class="col-xs-12 col-sm-3"></div>
+                <div class="col-xs-12 col-sm-6">
+                    <h2>Bu restorana neden gitmek istemediniz?</h2>
+                    <form  action="#" th:action="@{sebep}" method="PUT" th:object="${cevap}">
+                        <div class="form-check">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="form-check-input" id="pahali" name="pahali"/>
+                                    <label class="form-check-label" for="pahali" th:checked="${true}">Pahalı</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="form-check-input" id="ticket" name="ticket"/>
+                                    <label class="form-check-label" for="ticket" th:checked="${true}">Ticket yok</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="form-check-input" id="yagli" name="yagli"/>
+                                    <label class="form-check-label" for="yagli" th:checked="${true}">Yemekleri Yağlı</label>
+                                </li>
+                                <li>
+                                    <label for="description">Diğer</label>
+                                    <textarea class="form-control" id="description" placeholder="Maddelerinizi virgül ile ayırarak yazınız."  name="description" rows="4"></textarea>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="btn btn-default">Gönder</button>
+                    </form>
+                    <div class="col-xs-12 col-sm-3"></div>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Gönder</button>
-    </form>
-</div>
-</body>
-<div th:replace="pages/index :: footer">...</div>
+    </body>
+    <div th:replace="pages/index :: footer">...</div>
 </html>

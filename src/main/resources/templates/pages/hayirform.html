@@ -18,6 +18,14 @@
                         <div class="form-check">
                             <ul>
                                 <li>
+                                    <label for="kisiEmail">Email:</label>
+                                    <input type="text" readonly="readonly" class="form-control" th:value="${email}" id="kisiEmail" name="kisiEmail" > </input>
+                                </li>
+                                <li>
+                                    <label for="restoranName">Restoran:</label>
+                                    <input type="text" readonly="readonly" class="form-control" th:value="${restoran}" id="restoranName" name="restoranName" > </input>
+                                </li>
+                                <li>
                                     <input type="checkbox" class="form-check-input" id="pahali" name="pahali"/>
                                     <label class="form-check-label" for="pahali" th:checked="${true}">Pahalı</label>
                                 </li>

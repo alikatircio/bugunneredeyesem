@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,18 +59,25 @@ public class MailController {
     }
 
     @RequestMapping(value = "hayir", method = RequestMethod.GET)
-    public String answerHayır(){
+    public ModelAndView answerHayır(@RequestParam(value = "email") String email, @RequestParam(value = "restoran") String restoran){
 
-        return "pages/hayirform";
+        ModelAndView model = new ModelAndView("pages/hayirform");
+        model.addObject("email",  email);
+        model.addObject("restoran",  restoran);
+        return model;
     }
 
     @RequestMapping(value = "sebep", method = RequestMethod.GET)
-    public String hayir(@RequestParam(value = "email") String email, @RequestParam(value = "restoran") String restoran, @ModelAttribute Cevap cevap){
+    public String hayir(@ModelAttribute Cevap cevap){
 
-        cevap.setKisiEmail(email);
-        cevap.setRestoranName(restoran);
         cevap.setGidiyor(false);
         mailService.addCevap(cevap);
         return "redirect:tesekkurler";
+    }
+
+    @RequestMapping(value = "tesekkurler", method = RequestMethod.GET)
+    public String tesekkurlerPage(){
+
+        return "pages/tesekkurler";
     }
 }

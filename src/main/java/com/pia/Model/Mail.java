@@ -1,7 +1,5 @@
 package com.pia.Model;
 
-import org.springframework.ui.Model;
-
 /**
  * Created by ali on 3.01.2018.
  */
@@ -11,24 +9,25 @@ public class Mail {
     private String kisiEmail;
     private int restoranId;
     private String restoranName;
-    private Model model;
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-    }
+    private int offerId;
 
     public Mail() {
     }
 
-    public Mail(int kisiId, String kisiName, int restoranId, String restoranName) {
+    public Mail(int kisiId, String kisiEmail, int restoranId, String restoranName, int offerId) {
         this.kisiId = kisiId;
-        this.kisiEmail = kisiName;
+        this.kisiEmail = kisiEmail;
         this.restoranId = restoranId;
         this.restoranName = restoranName;
+        this.offerId = offerId;
+    }
+
+    public int getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
     }
 
     public int getKisiId() {

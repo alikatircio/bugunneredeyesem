@@ -39,14 +39,14 @@ public class MailService {
     @Autowired
     private CevapRepository cevapRepository;
 
-    public void sendEmail(String name, String recipient, String restoran) throws MessagingException {
+    public void sendEmail(String name, String recipient, String restoran, int offerId) throws MessagingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
         messageHelper.setFrom("prm-test@pia-team.com");
         messageHelper.setTo(recipient);
         messageHelper.setSubject("Bugün Nerede Yesem?");
-        String content = mailContentBuilder.build(name, recipient, restoran);
+        String content = mailContentBuilder.build(name, recipient, restoran, offerId);
         messageHelper.setText(content, true);
         try {
             javaMailSender.send(mimeMessage);
@@ -57,19 +57,22 @@ public class MailService {
 
     public List<Mail> findKisiAndRestoran(){
 
-        List<RasgeleRestoran> rasgeleRestorans = restoranService.cikanRestoranlar;
+        List<Teklif> teklifs = restoranService.cikanRestoranlar;
         List<Mail> kisiAndRestonList = new ArrayList<>();
-        for (int i = 0; i<rasgeleRestorans.size(); i++){
+        for (int i = 0; i< teklifs.size(); i++){
 
             Mail mail = new Mail();
-            int kisiId = rasgeleRestorans.get(i).getKisiId();
-            int restoranId = rasgeleRestorans.get(i).getRestoranId();
+            int kisiId = teklifs.get(i).getKisiId();
+            int restoranId = teklifs.get(i).getRestoranId();
+            int offerId = teklifs.get(i).getOfferId();
             Kisi kisi = kisiService.findOne(kisiId);
             Restoran restoran = restoranService.findOne(restoranId);
+
             mail.setKisiId(kisi.getId());
             mail.setKisiEmail(kisi.getEmail());
             mail.setRestoranId(restoran.getId());
             mail.setRestoranName(restoran.getName());
+            mail.setOfferId(offerId);
             kisiAndRestonList.add(mail);
         }
         return kisiAndRestonList;
@@ -78,5 +81,10 @@ public class MailService {
     public void addCevap(Cevap cevap){
 
         cevapRepository.save(cevap);
+    }
+
+    public Cevap findByOfferId (int offerId){
+
+        return cevapRepository.findByOfferId(offerId);
     }
 }

@@ -16,6 +16,9 @@ public class Cevap {
     @Column(name = "KISIEMAIL")
     private String kisiEmail;
 
+    @Column(name = "OFFERID")
+    private int offerId;
+
     @Column(name = "RESTORANNAME")
     private String restoranName;
 
@@ -38,14 +41,23 @@ public class Cevap {
     public Cevap() {
     }
 
-    public Cevap(String kisiEmail, String restoranName, boolean gidiyor, boolean pahali, boolean ticket, boolean yagli, String description) {
+    public Cevap(String kisiEmail, int offerId, String restoranName, boolean gidiyor, boolean pahali, boolean ticket, boolean yagli, String description) {
         this.kisiEmail = kisiEmail;
+        this.offerId = offerId;
         this.restoranName = restoranName;
         this.gidiyor = gidiyor;
         this.pahali = pahali;
         this.ticket = ticket;
         this.yagli = yagli;
         this.description = description;
+    }
+
+    public int getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
     }
 
     public String getDescription() {

@@ -2,7 +2,7 @@ package com.pia.Service;
 
 import com.pia.DAO.RestoranRepository;
 import com.pia.Model.Kisi;
-import com.pia.Model.RasgeleRestoran;
+import com.pia.Model.Teklif;
 import com.pia.Model.Restoran;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,10 @@ public class RestoranService {
     @Autowired
     private KisiService kisiService;
 
-    public List<RasgeleRestoran>  cikanRestoranlar = new ArrayList<>();
+    @Autowired
+    private TeklifService teklifService;
+
+    public List<Teklif>  cikanRestoranlar = new ArrayList<>();
 
     public Collection<Restoran> findAllRestoran(){
 
@@ -54,9 +57,9 @@ public class RestoranService {
         restoranRepository.save(restoran);
     }
 
-    public List<RasgeleRestoran> randomRestoran(){
+    public List<Teklif> randomRestoran(){
 
-        List<RasgeleRestoran>  rasgeleRestoranlar = new ArrayList<>();
+        List<Teklif>  rasgeleRestoranlar = new ArrayList<>();
         List<Kisi> kisis = kisiService.allKisi();
         List<Restoran> restorans = new ArrayList<>();
         for (Restoran restoran : restoranRepository.findAll()) {
@@ -64,23 +67,24 @@ public class RestoranService {
             restorans.add(restoran);
         }
         for (int i = 0; i<kisis.size(); i++){
-            RasgeleRestoran rasgeleRestoran = new RasgeleRestoran();
+            Teklif teklif = new Teklif();
             Random ran =  new Random();
             int restoranIndex = ran.nextInt(restorans.size() + 1);
             if (restoranIndex == 0){
                 restoranIndex = ran.nextInt(restorans.size() + 1);
             }
             Restoran bulunanRestoran = findOne(restoranIndex);
-            rasgeleRestoran.setRestoranId(bulunanRestoran.getId());
-            rasgeleRestoran.setRestoranName(bulunanRestoran.getName());
-            rasgeleRestoran.setKisiId(kisis.get(i).getId());
-            rasgeleRestoran.setKisiName(kisis.get(i).getName());
-            rasgeleRestoranlar.add(rasgeleRestoran);
+            teklif.setRestoranId(bulunanRestoran.getId());
+            teklif.setRestoranName(bulunanRestoran.getName());
+            teklif.setKisiId(kisis.get(i).getId());
+            teklif.setKisiName(kisis.get(i).getName());
+            teklifService.addTeklif(teklif);
+            rasgeleRestoranlar.add(teklif);
 
         }
-        Collections.sort(rasgeleRestoranlar, new Comparator<RasgeleRestoran>() {
+        Collections.sort(rasgeleRestoranlar, new Comparator<Teklif>() {
             @Override
-            public int compare(RasgeleRestoran o1, RasgeleRestoran o2) {
+            public int compare(Teklif o1, Teklif o2) {
                 return o1.getRestoranId()-o2.getRestoranId();
             }
         });

@@ -18,11 +18,12 @@ public class MailContentBuilder {
         this.templateEngine = templateEngine;
     }
 
-    public String build(String name, String email, String restoran) {
+    public String build(String name, String email, String restoran, int offerId) {
         Context context = new Context();
         context.setVariable("name", name);
         context.setVariable("restoran", restoran);
         context.setVariable("email", email);
+        context.setVariable("offerId", offerId);
         return templateEngine.process("pages/email", context);
     }
 }

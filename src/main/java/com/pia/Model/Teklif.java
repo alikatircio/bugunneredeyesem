@@ -1,23 +1,47 @@
 package com.pia.Model;
 
+import javax.persistence.*;
+
 /**
  * Created by ali on 26.12.2017.
  */
-public class RasgeleRestoran {
 
+@Entity(name = "teklifler")
+public class Teklif {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int offerId;
+
+    @Column (name = "RESTORANID")
     private int restoranId;
+
+    @Column(name = "RESTORANNAME")
     private String restoranName;
+
+    @Column(name = "KISIID")
     private int kisiId;
+
+    @Column(name = "KISINAME")
     private String kisiName;
 
-    public RasgeleRestoran() {
+    public Teklif() {
     }
 
-    public RasgeleRestoran(int restoranId, String restoranName, int kisiId, String kisiName) {
+    public Teklif(int restoranId, String restoranName, int kisiId, String kisiName, int offerId) {
         this.restoranId = restoranId;
         this.restoranName = restoranName;
         this.kisiId = kisiId;
         this.kisiName = kisiName;
+        this.offerId = offerId;
+    }
+
+    public int getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
     }
 
     public int getKisiId() {

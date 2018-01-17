@@ -9,4 +9,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface KisiRepository extends CrudRepository<Kisi, Integer> {
 
     public Kisi findByEmail(String email);
+
+    public Kisi findByEmailAndPassword (String email, String password);
+
+
 }

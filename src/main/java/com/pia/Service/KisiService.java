@@ -66,6 +66,11 @@ public class KisiService {
 
     public Kisi findByEmail(String email){
 
-        return (Kisi) kisiRepository.findByEmail(email);
+        return kisiRepository.findByEmail(email);
+    }
+
+    public Kisi findByEmailAndPassword (String email, String password){
+
+        return kisiRepository.findByEmailAndPassword(email, password);
     }
 }

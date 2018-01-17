@@ -18,7 +18,7 @@ public class RestoranController {
     @Autowired
     private RestoranService restoranService;
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index() {
 
         return "pages/index";
@@ -40,7 +40,7 @@ public class RestoranController {
     public String  addRestoran(@ModelAttribute Restoran restoran){
 
         restoranService.addRestoran(restoran);
-        return  "redirect:/";
+        return  "redirect:restoranlar";
     }
 
     @RequestMapping(value = "/sil", method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class RestoranController {
         int ids = Integer.valueOf(id);
         System.out.println(id);
         restoranService.deleteRestoran(ids);
-        return "redirect:/";
+        return "redirect:restoranlar";
     }
 
     @RequestMapping(value = "updaterestoran", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class RestoranController {
     public String updateRestoran(@ModelAttribute Restoran restoran){
 
         restoranService.updateRestoran(restoran);
-        return "redirect:/";
+        return "redirect:restoranlar";
     }
 
 

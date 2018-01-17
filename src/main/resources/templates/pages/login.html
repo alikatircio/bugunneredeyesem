@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pia Internal Application - Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Styles -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- Page Body Container -->
+<div class="container">
+    <!-- Row -->
+    <div class="row" style="margin-top: 60px">
+        <!-- Columns -->
+        <div class="col-xs-12 col-sm-3"></div>
+        <div class="col-xs-12 col-sm-6">
+            <!-- Login Panel -->
+            <div class="panel panel-primary">
+                <!-- Panel Heading -->
+                <div class="panel-heading">Giriş</div>
+                <!-- Panel Body -->
+                <div class="panel-body">
+                    <!-- Login Form -->
+                    <form th:action="@{/login}" method="post" th:object="${kisi}">
+                        <!-- Email -->
+                        <span th:text="${error}"></span>
+                        <div class="form-group">
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   placeholder="E-Posta" />
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group">
+                            <input type="password"
+                                   class="form-control"
+                                   id="password"
+                                   name="password"
+                                   placeholder="Parola" />
+                        </div>
+                        <input type="submit" class="btn btn-primary pull-right" value="Gönder" />
+                    </form>
+                    <!-- Login Form End -->
+                </div>
+                <!-- Panel Body End -->
+            </div>
+            <!-- Login Panel End -->
+        </div>
+        <div class="col-xs-12 col-sm-3"></div>
+        <!-- Columns End -->
+    </div>
+    <!-- Row End -->
+</div>
+<!-- Page Body Container End -->
+</body>
+</html>

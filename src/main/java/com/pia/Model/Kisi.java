@@ -19,13 +19,36 @@ public class Kisi {
     @Column(name = "EMAIL")
     private String email;
 
-    public Kisi(int id, String name, String email) {
-        this.id = id;
+    @Column(name = "PASSWORD")
+    private String password;
+
+    @Column(name = "ROLE")
+    private String role;
+
+    public Kisi(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public Kisi() {
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {

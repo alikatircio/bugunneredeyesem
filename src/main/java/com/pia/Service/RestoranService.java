@@ -66,14 +66,26 @@ public class RestoranService {
 
             restorans.add(restoran);
         }
+        Restoran bulunanRestoran = null;
         for (int i = 0; i<kisis.size(); i++){
+
             Teklif teklif = new Teklif();
             Random ran =  new Random();
             int restoranIndex = ran.nextInt(restorans.size() + 1);
-            if (restoranIndex == 0){
-                restoranIndex = ran.nextInt(restorans.size() + 1);
+            bulunanRestoran = findOne(restoranIndex);
+            if (restoranIndex == 0 || bulunanRestoran == null){
+
+                boolean flag = false;
+                while (flag == false){
+
+                    restoranIndex = ran.nextInt(restorans.size() + 1);
+                    bulunanRestoran = findOne(restoranIndex);
+                    if (restoranIndex != 0 && bulunanRestoran != null ) {
+
+                        flag = true;
+                    }
+                }
             }
-            Restoran bulunanRestoran = findOne(restoranIndex);
             teklif.setRestoranId(bulunanRestoran.getId());
             teklif.setRestoranName(bulunanRestoran.getName());
             teklif.setKisiId(kisis.get(i).getId());

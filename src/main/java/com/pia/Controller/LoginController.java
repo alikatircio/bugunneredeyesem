@@ -8,7 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by ali on 17.01.2018.
@@ -27,16 +28,19 @@ public class LoginController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String loginUser(@ModelAttribute("kisi") Kisi kisi, ModelMap modelMap){
+    public String loginUser(@ModelAttribute("kisi") Kisi kisi, ModelMap modelMap, HttpSession session){
 
         if (kisiService.findByEmailAndPassword(kisi.getEmail(), kisi.getPassword()) == null){
 
             modelMap.put("error", "Kullanıcı bulunamadı");
             return "pages/login";
         }
-        else
-            return "redirect:index";
+        else {
 
+            Kisi sessionKisi = kisiService.findByEmail(kisi.getEmail());
+            session.setAttribute("kisi", sessionKisi);
+            return "redirect:index";
+        }
     }
 
 }

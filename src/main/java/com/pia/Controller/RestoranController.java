@@ -1,12 +1,15 @@
 package com.pia.Controller;
 
+import com.pia.Model.Kisi;
 import com.pia.Model.Restoran;
 import com.pia.Service.RestoranService;
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by ali on 14.12.2017.
@@ -68,10 +71,20 @@ public class RestoranController {
 
 
     @RequestMapping(value = "restoranbul", method = RequestMethod.GET)
-    public ModelAndView restoranBul(){
+    public ModelAndView restoranBul( HttpSession session){
 
-        ModelAndView model = new ModelAndView("pages/rasgelerestoran");
-        model.addObject("restoranlar",restoranService.randomRestoran());
-        return model;
+        Kisi kisi = (Kisi) session.getAttribute("kisi");
+        if (kisi.getRole().equalsIgnoreCase("admin")){
+            ModelAndView model = new ModelAndView("pages/admin/rasgelerestoran");
+            model.addObject("restoranlar",restoranService.randomRestoran());
+            return model;
+        }
+        else {
+
+            ModelAndView model = new ModelAndView("pages/user/rasgelerestoran");
+            model.addObject("restoranlar",restoranService.randomRestoran());
+            return model;
+        }
+
     }
 }

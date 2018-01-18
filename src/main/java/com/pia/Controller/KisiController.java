@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by ali on 25.12.2017.
  */
@@ -29,9 +31,14 @@ public class KisiController {
     }
 
     @RequestMapping(value = "kisi_ekle", method = RequestMethod.GET)
-    public String addKisi(){
+    public String addKisi(HttpSession session){
 
-        return "pages/kisi_ekle";
+        Kisi kisi =  (Kisi) session.getAttribute("kisi");
+        if (kisi.getRole().equalsIgnoreCase("admin")) {
+            return "pages/admin/kisi_ekle";
+        }
+        else
+            return "pages/index";
     }
 
     @RequestMapping(value = "kisi_olustur", method = RequestMethod.POST)
@@ -64,5 +71,29 @@ public class KisiController {
         return "redirect:kisiler";
     }
 
+    @RequestMapping(value = "kaydol", method = RequestMethod.GET)
+    public String kaydol(){
+
+        return "pages/user/kisikayit";
+    }
+
+    @RequestMapping(value = "kisi_kayit", method = RequestMethod.POST)
+    public String kisiKayit(Kisi kisi, HttpSession session){
+
+        Kisi loginKisi = (Kisi) session.getAttribute("kisi");
+        if (loginKisi==null){
+
+            kisi.setRole("user");
+            kisiService.addKisi(kisi);
+        }
+        if (loginKisi ==null){
+
+            return "redirect:/";
+        }
+        else {
+
+            return "redirect:index";
+        }
+    }
     
 }

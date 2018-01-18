@@ -35,15 +35,15 @@ public class RestoranController {
 
 
     @RequestMapping(value = "/yenirestoran", method = RequestMethod.GET)
-    public String addRestoran(HttpServletRequest req){
-            return  "/pages/yenirestoran";
+    public String addRestoran(){
+            return  "pages/yenirestoran";
     }
 
     @RequestMapping(value = "yenirestoran/create", method = RequestMethod.POST)
     public String  addRestoran(@ModelAttribute Restoran restoran){
 
         restoranService.addRestoran(restoran);
-        return  "redirect:restoranlar";
+        return  "/pages/restoranlar";
     }
 
     @RequestMapping(value = "/sil", method = RequestMethod.GET)

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="pages/index :: head">...</div>
+</head>
+<body>
+
+<div th:replace="pages/index :: navbar">...</div>
+
+<div class="container">
+    <div class="row" style="margin-top: 60px">
+        <!-- Columns -->
+        <div class="col-xs-12 col-sm-3"></div>
+        <div class="col-xs-12 col-sm-6">
+        <h2>Bugün Nerede Yesem</h2>
+        <form action="#" th:action="@{/kisi_olustur}" method="post" th:object="${kisi}">
+            <div class="form-group">
+                <label for="email">Kişi Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Kişi Email" name="email" > </input>
+                <label for="name">Kişi Adı:</label>
+                <input type="text" class="form-control" id="name" placeholder="Kişi adı" name="name" > </input>
+                <label for="password">Kişi Parola:</label>
+                <input type="password" class="form-control" id="password" placeholder="Kişi Parola" name="password" > </input>
+                <label>Kişi Rol:</label>
+                <select class="input-large form-control" name="role">
+                    <option value="admin" selected="selected">Admin</option>
+                    <option value="user" name="role">Kullanıcı</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">Kişi Ekle</button>
+        </form>
+        </div>
+        <div class="col-xs-12 col-sm-3"></div>
+    </div>
+</div>
+</body>
+<div th:replace="pages/index :: footer">...</div>
+</html>
